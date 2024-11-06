@@ -3,6 +3,7 @@ package jm.task.core.jdbc.model;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Objects;
 
 @Table
 public class User {
@@ -17,19 +18,8 @@ public class User {
 
     @Column
     private Byte age;
-
     public User() {
 
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", age=" + age +
-                '}';
     }
 
     public User(String name, String lastName, Byte age) {
@@ -69,4 +59,27 @@ public class User {
     public void setAge(Byte age) {
         this.age = age;
     }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User user)) return false;
+        return Objects.equals(getId(), user.getId()) && Objects.equals(getName(), user.getName()) && Objects.equals(getLastName(), user.getLastName()) && Objects.equals(getAge(), user.getAge());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getName(), getLastName(), getAge());
+    }
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                '}';
+    }
+
+
 }

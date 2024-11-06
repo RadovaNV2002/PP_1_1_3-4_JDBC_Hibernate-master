@@ -12,14 +12,15 @@ public class UserDaoJDBCImpl implements UserDao {
 
     }
 
+    @Override
     public void createUsersTable() {
         try (Connection connection = Util.getConnection();
                 Statement statement = connection.createStatement()) {
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS users" +
-                    "(id BIGINT PRIMARY KEY AUTO_INCREMENT," +
-                    " name VARCHAR(50), " +
-                    "lastname VARCHAR(50), " +
-                    "age tinyint)");
+                    "(id integer not null AUTO_INCREMENT PRIMARY KEY," +
+                    "name VARCHAR(100), " +
+                    "lastname VARCHAR(100), " +
+                    "age integer)");
             System.out.println("Таблица создана");
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
@@ -27,6 +28,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     }
 
+    @Override
     public void dropUsersTable() {
         try (Connection connection = Util.getConnection();
              Statement statement = connection.createStatement()) {
@@ -38,6 +40,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     }
 
+    @Override
     public void saveUser(String name, String lastName, byte age) {
         String sql = "INSERT INTO users(name, lastname, age) VALUES(?,?,?)";
         try (Connection connection = Util.getConnection();
@@ -52,6 +55,7 @@ public class UserDaoJDBCImpl implements UserDao {
         }
     }
 
+    @Override
     public void removeUserById(long id) {
         try (Connection connection = Util.getConnection();
              Statement statement = connection.createStatement()) {
@@ -63,6 +67,7 @@ public class UserDaoJDBCImpl implements UserDao {
         }
     }
 
+    @Override
     public List<User> getAllUsers() {
         List<User> allUser = new ArrayList<>();
         String sql = "SELECT id, name, lastName, age from users";
@@ -86,6 +91,7 @@ public class UserDaoJDBCImpl implements UserDao {
         return allUser;
     }
 
+    @Override
     public void cleanUsersTable() {
         String sql = "DELETE FROM test.users";
         try (Connection connection = Util.getConnection();

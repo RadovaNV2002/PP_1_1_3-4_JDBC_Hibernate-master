@@ -12,6 +12,7 @@ public class Main {
     private static final User user4 = new User("Legkiy", "Qyqer", (byte) 76);
 
     public static void main(String[] args) {
+        UserService userService = new UserServiceImpl();
 
         userService.createUsersTable();
 
