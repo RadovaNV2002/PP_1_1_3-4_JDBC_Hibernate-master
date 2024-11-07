@@ -55,10 +55,10 @@ public class UserDaoJDBCImpl implements UserDao {
 
     @Override
     public void removeUserById(long id) {
+        String sql = "DELETE FROM users where id";
         try (Connection connection = Util.getConnection();
-             Statement statement = connection.createStatement()) {
-            String sql = "DELETE FROM users where id";
-            statement.executeUpdate(sql);
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.executeUpdate();
             System.out.println("User удален");
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
