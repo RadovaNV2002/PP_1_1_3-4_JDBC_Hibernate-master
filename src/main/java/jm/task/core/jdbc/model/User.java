@@ -18,8 +18,8 @@ public class User {
 
     @Column
     private Byte age;
-    public User() {
 
+    public User() {
     }
 
     public User(String name, String lastName, Byte age) {
@@ -59,7 +59,7 @@ public class User {
     public void setAge(Byte age) {
         this.age = age;
     }
-    
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -71,6 +71,7 @@ public class User {
     public int hashCode() {
         return Objects.hash(getId(), getName(), getLastName(), getAge());
     }
+
     @Override
     public String toString() {
         return "User{" +

@@ -15,7 +15,7 @@ public class UserDaoJDBCImpl implements UserDao {
     @Override
     public void createUsersTable() {
         try (Connection connection = Util.getConnection();
-                Statement statement = connection.createStatement()) {
+             Statement statement = connection.createStatement()) {
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS users" +
                     "(id integer not null AUTO_INCREMENT PRIMARY KEY," +
                     "name VARCHAR(100), " +
@@ -25,7 +25,6 @@ public class UserDaoJDBCImpl implements UserDao {
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     @Override
@@ -37,7 +36,6 @@ public class UserDaoJDBCImpl implements UserDao {
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     @Override
@@ -102,6 +100,6 @@ public class UserDaoJDBCImpl implements UserDao {
             e.printStackTrace();
             System.out.println("Не удалось очистить");
         }
-   }
+    }
 }
 
